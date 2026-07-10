@@ -264,34 +264,36 @@ footer{border-top:1px solid var(--color-divider);padding-block:2.5rem;}
     </div>
   </div>
 
-  <div class="case reveal">
+   <div class="case reveal">
     <div class="case-head">
-      <div><span class="case-tag">Command Architecture</span><h3>Purchase-Content-Flow 分層設計</h3></div>
+      <div><span class="case-tag">API & Exploratory Testing</span><h3>服務層 API 測試與探索性測試流程</h3></div>
     </div>
     <div class="case-body">
       <div class="case-col">
         <h4>問題</h4>
-        <p>不同裝置購買方式不同，測試帳號與信用卡需要頻繁替換，若寫死在流程中，會造成維護困難與跨人協作誤判。</p>
+        <p>金流、訂單、帳務等服務程式若僅靠功能 UI 測試，難以覆蓋邊界條件與異常回覆；且未發布功能缺乏明確驗收標準，容易在探索性測試階段漏掉潛在影響範圍。</p>
         <h4 style="margin-top:1rem;">做法</h4>
         <ul>
-          <li>將 command、account profile、payment profile、device rule 拆成獨立分層</li>
-          <li>採用 machine-friendly 參數命名，降低輸入格式不一致造成的錯誤</li>
-          <li>設計可擴充規則，方便未來新增 refund-flow、plan-change-flow 等場景</li>
+          <li>以 Postman + Python(requests) 建立 API 測試案例，涵蓋正向流程、錯誤處理、邊界條件</li>
+          <li>用 SQL 查詢驗證後端資料一致性，確保 API 回覆與資料庫狀態同步</li>
+          <li>對未發布功能，先定義需求與預期行為，再設計探索性測試涵蓋潛在影響範圍</li>
+          <li>撰寫結構化測試計劃與測試報告，讓 PM / RD 快速掌握品質風險</li>
         </ul>
       </div>
       <div class="case-col">
         <h4>技術棧</h4>
-        <p>Claude Code, Bash, Pytest, 分層資料結構設計</p>
+        <p>Postman, Python (requests, pytest), SQL, Fiddler, Confluence</p>
         <div class="case-metrics">
-          <div class="metric"><div class="n">3+</div><div class="l">可替換帳號/卡片組合</div></div>
-          <div class="metric"><div class="n">↓</div><div class="l">跨人協作誤判率</div></div>
+          <div class="metric"><div class="n">100%</div><div class="l">API 案例納入回歸自動化</div></div>
+          <div class="metric"><div class="n">↓</div><div class="l">上線後回報缺陷率</div></div>
         </div>
       </div>
     </div>
     <div class="pill-row">
-      <span class="pill">Command Layering</span><span class="pill">State-independent</span><span class="pill">Extensible</span>
+      <span class="pill">API Testing</span><span class="pill">Exploratory Testing</span><span class="pill">Test Plan / Report</span>
     </div>
   </div>
+  <div class="case reveal">
 
   <div class="case reveal">
     <div class="case-head">
@@ -322,33 +324,31 @@ footer{border-top:1px solid var(--color-divider);padding-block:2.5rem;}
     </div>
   </div>
 
-  <div class="case reveal">
     <div class="case-head">
-      <div><span class="case-tag">API & Exploratory Testing</span><h3>服務層 API 測試與探索性測試流程</h3></div>
+      <div><span class="case-tag">Command Architecture</span><h3>Purchase-Content-Flow 分層設計</h3></div>
     </div>
     <div class="case-body">
       <div class="case-col">
         <h4>問題</h4>
-        <p>金流、訂單、帳務等服務程式若僅靠功能 UI 測試，難以覆蓋邊界條件與異常回覆；且未發布功能缺乏明確驗收標準，容易在探索性測試階段漏掉潛在影響範圍。</p>
+        <p>不同裝置購買方式不同，測試帳號與信用卡需要頻繁替換，若寫死在流程中，會造成維護困難與跨人協作誤判。</p>
         <h4 style="margin-top:1rem;">做法</h4>
         <ul>
-          <li>以 Postman + Python(requests) 建立 API 測試案例，涵蓋正向流程、錯誤處理、邊界條件</li>
-          <li>用 SQL 查詢驗證後端資料一致性，確保 API 回覆與資料庫狀態同步</li>
-          <li>對未發布功能，先定義需求與預期行為，再設計探索性測試涵蓋潛在影響範圍</li>
-          <li>撰寫結構化測試計劃與測試報告，讓 PM / RD 快速掌握品質風險</li>
+          <li>將 command、account profile、payment profile、device rule 拆成獨立分層</li>
+          <li>採用 machine-friendly 參數命名，降低輸入格式不一致造成的錯誤</li>
+          <li>設計可擴充規則，方便未來新增 refund-flow、plan-change-flow 等場景</li>
         </ul>
       </div>
       <div class="case-col">
         <h4>技術棧</h4>
-        <p>Postman, Python (requests, pytest), SQL, Fiddler, Confluence</p>
+        <p>Claude Code, Bash, Pytest, 分層資料結構設計</p>
         <div class="case-metrics">
-          <div class="metric"><div class="n">100%</div><div class="l">API 案例納入回歸自動化</div></div>
-          <div class="metric"><div class="n">↓</div><div class="l">上線後回報缺陷率</div></div>
+          <div class="metric"><div class="n">3+</div><div class="l">可替換帳號/卡片組合</div></div>
+          <div class="metric"><div class="n">↓</div><div class="l">跨人協作誤判率</div></div>
         </div>
       </div>
     </div>
     <div class="pill-row">
-      <span class="pill">API Testing</span><span class="pill">Exploratory Testing</span><span class="pill">Test Plan / Report</span>
+      <span class="pill">Command Layering</span><span class="pill">State-independent</span><span class="pill">Extensible</span>
     </div>
   </div>
 
