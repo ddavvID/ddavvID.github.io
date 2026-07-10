@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>David Lai | QA Automation & AI-Driven Test Portfolio</title>
+<meta name="description" content="Senior QA Engineer portfolio - manual to AI-driven test automation, cross-platform, API testing, and agentic AI workflow design.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Work+Sans:wght@300..700&display=swap" rel="stylesheet">
+<style>
+:root, [data-theme="light"] {
+  --color-bg:#f7f6f2; --color-surface:#f9f8f5; --color-surface-2:#fbfbf9;
+  --color-surface-offset:#f3f0ec; --color-divider:#dcd9d5; --color-border:#d4d1ca;
+  --color-text:#28251d; --color-text-muted:#7a7974; --color-text-faint:#bab9b4; --color-text-inverse:#f9f8f4;
+  --color-primary:#01696f; --color-primary-hover:#0c4e54; --color-primary-highlight:#cedcd8;
+  --color-success:#437a22; --color-gold:#d19900;
+  --shadow-sm:0 1px 2px rgba(20,20,10,0.06); --shadow-md:0 4px 12px rgba(20,20,10,0.08); --shadow-lg:0 12px 32px rgba(20,20,10,0.12);
+  --font-display:'DM Serif Display', Georgia, serif; --font-body:'Work Sans','Helvetica Neue',sans-serif;
+}
+[data-theme="dark"] {
+  --color-bg:#171614; --color-surface:#1c1b19; --color-surface-2:#201f1d;
+  --color-surface-offset:#1d1c1a; --color-divider:#262523; --color-border:#393836;
+  --color-text:#cdccca; --color-text-muted:#797876; --color-text-faint:#5a5957; --color-text-inverse:#2b2a28;
+  --color-primary:#4f98a3; --color-primary-hover:#227f8b; --color-primary-highlight:#313b3b;
+  --color-success:#6daa45; --color-gold:#e8af34;
+  --shadow-sm:0 1px 2px rgba(0,0,0,0.3); --shadow-md:0 4px 12px rgba(0,0,0,0.35); --shadow-lg:0 12px 32px rgba(0,0,0,0.45);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);line-height:1.65;-webkit-font-smoothing:antialiased;}
+img,svg{display:block;}
+.container{max-width:1080px;margin-inline:auto;padding-inline:1.5rem;}
+h1,h2,h3{font-family:var(--font-display);line-height:1.15;font-weight:400;}
+a{color:var(--color-primary);text-decoration:none;}
+section{padding-block:clamp(3rem,7vw,6rem);}
+.nav{position:sticky;top:0;z-index:50;background:color-mix(in oklab, var(--color-bg) 88%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--color-divider);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding-block:.9rem;}
+.nav-links{display:flex;gap:1.6rem;align-items:center;}
+.nav-links a{font-size:.92rem;color:var(--color-text-muted);}
+.nav-links a:hover{color:var(--color-primary);}
+.logo{display:flex;align-items:center;gap:.55rem;font-weight:600;font-size:1rem;color:var(--color-text);}
+.theme-toggle{width:36px;height:36px;border-radius:999px;background:var(--color-surface-offset);display:flex;align-items:center;justify-content:center;color:var(--color-primary);border:1px solid var(--color-border);cursor:pointer;}
+.badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--color-primary);background:var(--color-primary-highlight);padding:.35rem .8rem;border-radius:999px;margin-bottom:1.2rem;}
+.hero{padding-top:clamp(3.5rem,8vw,6.5rem);}
+.hero h1{font-size:clamp(2.2rem,5vw,3.6rem);max-width:16ch;margin-bottom:1.1rem;}
+.hero p.lead{font-size:1.15rem;color:var(--color-text-muted);max-width:60ch;margin-bottom:2rem;}
+.btn-row{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:3rem;}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.4rem;border-radius:10px;font-size:.9rem;font-weight:600;border:1px solid transparent;transition:transform .18s ease, box-shadow .18s ease;}
+.btn-primary{background:var(--color-primary);color:#fff;}
+.btn-primary:hover{background:var(--color-primary-hover);transform:translateY(-2px);box-shadow:var(--shadow-md);}
+.btn-ghost{background:var(--color-surface);border-color:var(--color-border);color:var(--color-text);}
+.btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;border-top:1px solid var(--color-divider);padding-top:2rem;}
+.stat{}
+.stat .num{font-family:var(--font-display);font-size:2rem;color:var(--color-primary);}
+.stat .label{font-size:.82rem;color:var(--color-text-muted);}
+h2.section-title{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:.6rem;}
+p.section-sub{color:var(--color-text-muted);max-width:60ch;margin-bottom:2.5rem;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;}
+.card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:14px;padding:1.6rem;box-shadow:var(--shadow-sm);transition:transform .2s ease, box-shadow .2s ease;}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+.card h3{font-size:1.05rem;font-family:var(--font-body);font-weight:700;margin-bottom:.5rem;}
+.card p{font-size:.9rem;color:var(--color-text-muted);}
+.pill-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem;}
+.pill{font-size:.72rem;padding:.25rem .6rem;border-radius:999px;background:var(--color-surface-offset);color:var(--color-text-muted);border:1px solid var(--color-border);}
+.case{background:var(--color-surface);border:1px solid var(--color-border);border-radius:16px;padding:clamp(1.5rem,3vw,2.4rem);margin-bottom:1.6rem;box-shadow:var(--shadow-sm);}
+.case-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;}
+.case-head h3{font-size:1.4rem;font-family:var(--font-display);}
+.case-tag{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--color-primary);}
+.case-body{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;}
+.case-col h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-faint);margin-bottom:.5rem;}
+.case-col p, .case-col li{font-size:.92rem;color:var(--color-text-muted);}
+.case-col ul{padding-left:1.1rem;}
+.case-metrics{display:flex;gap:1.4rem;margin-top:1.2rem;flex-wrap:wrap;}
+.metric .n{font-family:var(--font-display);font-size:1.5rem;color:var(--color-success);}
+.metric .l{font-size:.72rem;color:var(--color-text-muted);}
+.skill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.skill-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:12px;padding:1.2rem;}
+.skill-card h4{font-size:.85rem;color:var(--color-primary);margin-bottom:.6rem;text-transform:uppercase;letter-spacing:.05em;}
+.skill-card ul{list-style:none;font-size:.87rem;color:var(--color-text-muted);}
+.skill-card li{margin-bottom:.3rem;}
+.artifact-list{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
+.artifact{display:flex;gap:1rem;align-items:flex-start;background:var(--color-surface);border:1px solid var(--color-border);border-radius:12px;padding:1.1rem;}
+.artifact .icon{width:38px;height:38px;border-radius:9px;background:var(--color-primary-highlight);color:var(--color-primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.artifact h4{font-size:.92rem;margin-bottom:.2rem;}
+.artifact p{font-size:.82rem;color:var(--color-text-muted);}
+footer{border-top:1px solid var(--color-divider);padding-block:2.5rem;}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-links{display:flex;gap:1.2rem;}
+.footer-links a{color:var(--color-text-muted);font-size:.85rem;}
+.footer-links a:hover{color:var(--color-primary);}
+.cta-box{background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:18px;padding:clamp(2rem,4vw,3rem);text-align:center;}
+.cta-box h2{margin-bottom:.7rem;}
+.cta-box p{color:var(--color-text-muted);max-width:50ch;margin:0 auto 1.5rem;}
+@media (max-width:900px){
+  .stat-grid{grid-template-columns:repeat(2,1fr);}
+  .grid-3{grid-template-columns:1fr;}
+  .case-body{grid-template-columns:1fr;}
+  .skill-grid{grid-template-columns:repeat(2,1fr);}
+  .artifact-list{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+.ratio-section{}
+.ratio-bar{display:flex;width:100%;height:44px;border-radius:12px;overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--color-border);}
+.ratio-seg{display:flex;align-items:center;justify-content:center;color:#fff;font-size:.82rem;font-weight:600;transition:flex-basis 1s ease;}
+.ratio-seg.manual{background:#8a8f98;}
+.ratio-seg.auto{background:var(--color-primary);}
+.ratio-seg.ai{background:var(--color-gold);}
+.ratio-legend{display:flex;gap:1.6rem;margin-top:1rem;flex-wrap:wrap;}
+.ratio-legend .item{display:flex;align-items:center;gap:.5rem;font-size:.88rem;color:var(--color-text-muted);}
+.ratio-legend .dot{width:11px;height:11px;border-radius:999px;display:inline-block;}
+.ratio-legend .dot.manual{background:#8a8f98;}
+.ratio-legend .dot.auto{background:var(--color-primary);}
+.ratio-legend .dot.ai{background:var(--color-gold);}
+.ratio-note{font-size:.88rem;color:var(--color-text-muted);margin-top:1.2rem;max-width:70ch;}
+.tag-nice{font-size:.72rem;padding:.2rem .55rem;border-radius:999px;background:var(--color-primary-highlight);color:var(--color-primary);border:1px solid var(--color-border);margin-left:.4rem;}
+
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <div class="logo">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-label="logo">
+        <path d="M9 12l2 2 4-4" stroke="var(--color-primary)"/>
+        <rect x="3" y="3" width="18" height="18" rx="5" stroke="var(--color-border)"/>
+      </svg>
+      QA × AI Automation
+    </div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#ratio">工作比例</a>
+      <a href="#skills">Skills</a>
+      <a href="#cases">Case Studies</a>
+      <a href="#artifacts">Artifacts</a>
+      <a href="#contact">Contact</a>
+      <div class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" role="button" tabindex="0">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero container">
+  <span class="badge reveal">Senior QA Engineer · AI-Driven Test Automation</span>
+  <h1 class="reveal">從手動測試到 AI 驅動的自動化測試系統</h1>
+  <p class="lead reveal">10+ 年 QA 經驗，橫跨串流平台、金流電商、B2B 系統，專精於前後端整合測試、跨裝置自動化框架、API 測試，以及將 AI Agent 導入日常測試工作流。目前測試工作比例：手動 10%、自動化 30%、AI Driven Test 60%。</p>
+  <div class="btn-row reveal">
+    <a class="btn btn-primary" href="#cases">查看案例研究</a>
+    <a class="btn btn-ghost" href="#contact">聯絡我 / 下載履歷</a>
+  </div>
+  <div class="stat-grid reveal">
+    <div class="stat"><div class="num">10+</div><div class="label">年 QA / 測試經驗</div></div>
+    <div class="stat"><div class="num">8</div><div class="label">曾任職公司 / 產品線</div></div>
+    <div class="stat"><div class="num">13</div><div class="label">帶領團隊人數</div></div>
+    <div class="stat"><div class="num">60%</div><div class="label">AI Driven Test 占比</div></div>
+  </div>
+</header>
+
+<section id="ratio" class="container ratio-section">
+  <h2 class="section-title reveal">目前測試工作比例</h2>
+  <p class="section-sub reveal">從手動排查、自動化框架，逐步演進到 AI Driven Test，是我目前工作分配與職涯方向的核心。</p>
+  <div class="ratio-bar reveal">
+    <div class="ratio-seg manual" style="flex-basis:10%;">10%</div>
+    <div class="ratio-seg auto" style="flex-basis:30%;">30%</div>
+    <div class="ratio-seg ai" style="flex-basis:60%;">60%</div>
+  </div>
+  <div class="ratio-legend reveal">
+    <div class="item"><span class="dot manual"></span>手動測試 10% — 探索性測試、問題重現與根因排查</div>
+    <div class="item"><span class="dot auto"></span>自動化測試 30% — Pytest / Playwright / Selenium / Appium / Maestro Studio</div>
+    <div class="item"><span class="dot ai"></span>AI Driven Test 60% — Claude Code / OpenClaw 驅動的測試設計、腳本產出與報告生成</div>
+  </div>
+  <p class="ratio-note reveal">這個比例反映我的方向：把重複性高的手動與腳本工作，逐步交給 AI Agent 處理，讓 QA 的時間集中在「定義風險、設計策略、驗證關鍵路徑」這些真正需要人判斷的地方。</p>
+</section>
+
+<section id="about" class="container">
+  <h2 class="section-title reveal">關於我</h2>
+  <p class="section-sub reveal">10+ 年 QA 經驗，從系統測試工程師到 QA Manager / Director，再到現在的 Senior QA Engineer，橫跨串流媒體（CATCHPLAY）、電商 / CMS（GTS、FJ Group）、B2B 硬體（Broadcom）等產業。核心能力是「前後端整合測試」與「把重複性工作系統化、自動化、AI 化」。</p>
+  <div class="grid-3">
+    <div class="card reveal">
+      <h3>完整測試生命週期</h3>
+      <p>需求分析、測試案例設計、腳本開發、執行驗證到回歸測試，皆有實際主導經驗，並曾從 0 到 1 建立 13 人 QA 團隊與 SOP。</p>
+    </div>
+    <div class="card reveal">
+      <h3>API 與服務層測試</h3>
+      <p>長期以 Postman + Python(requests) 進行 REST API 功能測試與自動化，並透過 SQL 驗證資料一致性，涵蓋金流、訂單、帳務等關鍵流程。</p>
+    </div>
+    <div class="card reveal">
+      <h3>AI Driven Test 實踐者</h3>
+      <p>將 Claude Code、OpenClaw 導入測試流程，建立 AI Agent 角色與任務分工框架，讓需求分析、腳本產出、報告撰寫標準化、可重複。</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="container">
+  <h2 class="section-title reveal">技能與工具</h2>
+  <p class="section-sub reveal">依用途分層呈現，而不是單純列出工具名稱。</p>
+  <div class="skill-grid">
+    <div class="skill-card reveal">
+      <h4>Automation</h4>
+      <ul><li>Playwright</li><li>Pytest</li><li>Selenium</li><li>Appium</li><li>Maestro Studio</li><li>Robot Framework</li><li>AirTest / Katalon</li><li>pyautogui</li></ul>
+    </div>
+    <div class="skill-card reveal">
+      <h4>API / Data</h4>
+      <ul><li>Postman (REST/GraphQL)</li><li>Python (requests, unittest)</li><li>SQL (MySQL / PostgreSQL)</li><li>JMeter 壓力測試</li></ul>
+    </div>
+    <div class="skill-card reveal">
+      <h4>OS / Shell / DevOps</h4>
+      <ul><li>Windows / Linux / macOS 雙環境</li><li>Bash / Shell Script</li><li>Docker</li><li>CI/CD 概念與流程整合</li><li>FlaUI（Windows AP 測試，正學習中）<span class="tag-nice">Nice to Have</span></li></ul>
+    </div>
+    <div class="skill-card reveal">
+      <h4>Gen AI</h4>
+      <ul><li>Claude / NotebookLM</li><li>Gemini</li><li>Perplexity</li><li>ChatGPT</li></ul>
+    </div>
+    <div class="skill-card reveal">
+      <h4>Agentic AI</h4>
+      <ul><li>Claude Code</li><li>OpenClaw</li><li>Gemini CLI</li><li>Ollama</li></ul>
+    </div>
+    <div class="skill-card reveal">
+      <h4>Project / Bug Tracking</h4>
+      <ul><li>Jira / Confluence</li><li>Zentao(禪道) / Redmine</li><li>TestRail / Qase</li></ul>
+    </div>
+    <div class="skill-card reveal">
+      <h4>Domain 相關經驗</h4>
+      <ul><li>金流 / 訂單 / 帳務流程測試</li><li>個人股票交易經驗（台股/美股）</li><li>下單、部位、風險控管流程理解</li></ul>
+    </div>
+  </div>
+</section>
+
+<section id="cases" class="container">
+  <h2 class="section-title reveal">案例研究</h2>
+  <p class="section-sub reveal">每個案例都包含問題、架構設計、技術棧與量化成果。</p>
+
+  <div class="case reveal">
+    <div class="case-head">
+      <div><span class="case-tag">Cross-device Regression</span><h3>跨裝置回歸測試架構</h3></div>
+    </div>
+    <div class="case-body">
+      <div class="case-col">
+        <h4>問題</h4>
+        <p>單一產品需同時支援 5 個平台，雙週一次發版，人工回歸速度跟不上迭代節奏，且不同裝置測試邏輯容易分散、難維護。</p>
+        <h4 style="margin-top:1rem;">做法</h4>
+        <ul>
+          <li>建立跨平台共用測試邏輯層，裝置差異抽出成獨立規則檔</li>
+          <li>設計可重用測試資料集，降低多語系/多裝置維護成本</li>
+          <li>建立團隊標準化 SOP，帶領 13 人共同維運</li>
+        </ul>
+      </div>
+      <div class="case-col">
+        <h4>技術棧</h4>
+        <p>Playwright, Pytest, Appium, Maestro Studio, SQL</p>
+        <div class="case-metrics">
+          <div class="metric"><div class="n">50%</div><div class="l">人工驗證時間下降</div></div>
+          <div class="metric"><div class="n">5</div><div class="l">平台同時支援</div></div>
+          <div class="metric"><div class="n">2wk</div><div class="l">穩定發版節奏</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pill-row">
+      <span class="pill">Android</span><span class="pill">iOS</span><span class="pill">Web</span><span class="pill">STB</span><span class="pill">TV</span>
+    </div>
+  </div>
+
+  <div class="case reveal">
+    <div class="case-head">
+      <div><span class="case-tag">Command Architecture</span><h3>Purchase-Content-Flow 分層設計</h3></div>
+    </div>
+    <div class="case-body">
+      <div class="case-col">
+        <h4>問題</h4>
+        <p>不同裝置購買方式不同，測試帳號與信用卡需要頻繁替換，若寫死在流程中，會造成維護困難與跨人協作誤判。</p>
+        <h4 style="margin-top:1rem;">做法</h4>
+        <ul>
+          <li>將 command、account profile、payment profile、device rule 拆成獨立分層</li>
+          <li>採用 machine-friendly 參數命名，降低輸入格式不一致造成的錯誤</li>
+          <li>設計可擴充規則，方便未來新增 refund-flow、plan-change-flow 等場景</li>
+        </ul>
+      </div>
+      <div class="case-col">
+        <h4>技術棧</h4>
+        <p>Claude Code, Bash, Pytest, 分層資料結構設計</p>
+        <div class="case-metrics">
+          <div class="metric"><div class="n">3+</div><div class="l">可替換帳號/卡片組合</div></div>
+          <div class="metric"><div class="n">↓</div><div class="l">跨人協作誤判率</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pill-row">
+      <span class="pill">Command Layering</span><span class="pill">State-independent</span><span class="pill">Extensible</span>
+    </div>
+  </div>
+
+  <div class="case reveal">
+    <div class="case-head">
+      <div><span class="case-tag">AI-Assisted Workflow</span><h3>Gen AI × Agentic AI 測試流程優化</h3></div>
+    </div>
+    <div class="case-body">
+      <div class="case-col">
+        <h4>問題</h4>
+        <p>需求分析、測試案例撰寫、bug report 與 release note 整理耗費大量人工時間，難以隨版本節奏擴張。</p>
+        <h4 style="margin-top:1rem;">做法</h4>
+        <ul>
+          <li>用 Gen AI 加速需求摘要與測試案例草稿產出</li>
+          <li>用 Agentic AI 串接多步驟自動化任務，包含 log 分析與報告生成</li>
+          <li>設定明確 acceptance criteria，讓 agent 執行前重列測試案例，避免流程跑偏</li>
+        </ul>
+      </div>
+      <div class="case-col">
+        <h4>技術棧</h4>
+        <p>Claude Code, OpenClaw, Gemini CLI, Ollama, NotebookLM</p>
+        <div class="case-metrics">
+          <div class="metric"><div class="n">35%</div><div class="l">測試案例草稿時間節省</div></div>
+          <div class="metric"><div class="n">60%</div><div class="l">Bug Report/Release Note 節省</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pill-row">
+      <span class="pill">Gen AI</span><span class="pill">Agentic AI</span><span class="pill">Workflow Automation</span>
+    </div>
+  </div>
+
+  <div class="case reveal">
+    <div class="case-head">
+      <div><span class="case-tag">API & Exploratory Testing</span><h3>服務層 API 測試與探索性測試流程</h3></div>
+    </div>
+    <div class="case-body">
+      <div class="case-col">
+        <h4>問題</h4>
+        <p>金流、訂單、帳務等服務程式若僅靠功能 UI 測試，難以覆蓋邊界條件與異常回覆；且未發布功能缺乏明確驗收標準，容易在探索性測試階段漏掉潛在影響範圍。</p>
+        <h4 style="margin-top:1rem;">做法</h4>
+        <ul>
+          <li>以 Postman + Python(requests) 建立 API 測試案例，涵蓋正向流程、錯誤處理、邊界條件</li>
+          <li>用 SQL 查詢驗證後端資料一致性，確保 API 回覆與資料庫狀態同步</li>
+          <li>對未發布功能，先定義需求與預期行為，再設計探索性測試涵蓋潛在影響範圍</li>
+          <li>撰寫結構化測試計劃與測試報告，讓 PM / RD 快速掌握品質風險</li>
+        </ul>
+      </div>
+      <div class="case-col">
+        <h4>技術棧</h4>
+        <p>Postman, Python (requests, pytest), SQL, Fiddler, Confluence</p>
+        <div class="case-metrics">
+          <div class="metric"><div class="n">100%</div><div class="l">API 案例納入回歸自動化</div></div>
+          <div class="metric"><div class="n">↓</div><div class="l">上線後回報缺陷率</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pill-row">
+      <span class="pill">API Testing</span><span class="pill">Exploratory Testing</span><span class="pill">Test Plan / Report</span>
+    </div>
+  </div>
+
+  <div class="case reveal">
+    <div class="case-head">
+      <div><span class="case-tag">Agentic AI Architecture</span><h3>五層式 Agentic AI 測試架構重構</h3></div>
+    </div>
+    <div class="case-body">
+      <div class="case-col">
+        <h4>問題</h4>
+        <p>單次 prompt 驅動的 AI 測試流程難以重複、難以維護，跨裝置、跨國別、跨語系時容易出現流程跑偏與誤操作，管理層也難以追蹤執行證據。</p>
+        <h4 style="margin-top:1rem;">做法</h4>
+        <ul>
+          <li>重新設計五層架構：核心規則層（CLAUDE.md）、命令入口層（.claude/commands/）、流程編排層（flows/）、配置資料層（devices/accounts/lang/elements）、驗證輸出層（testcases/reports/screenshots）</li>
+          <li>將流程、裝置、帳號、語系、驗證標準拆開管理，降低人為輸入差異與平台耦合</li>
+          <li>切換國別、帳號、裝置或語系時，只需替換設定檔，不需改動 flow 本身；新增流程（退款、訂閱、家長控制等）也只需擴充 flow/testcase，不需重寫整體架構</li>
+        </ul>
+      </div>
+      <div class="case-col">
+        <h4>技術棧</h4>
+        <p>Claude Code, CLAUDE.md 規則設計, Flow/Command/Testcase 分層架構, 多裝置/多國別/多語系配置管理</p>
+        <div class="case-metrics">
+          <div class="metric"><div class="n">80-90%</div><div class="l">執行精準度（10 次僅 1-2 次誤擊）</div></div>
+          <div class="metric"><div class="n">5</div><div class="l">分層架構（規則/命令/流程/配置/驗證）</div></div>
+          <div class="metric"><div class="n">↓</div><div class="l">跨裝置/跨國別維護成本</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pill-row">
+      <span class="pill">Agentic AI</span><span class="pill">Layered Architecture</span><span class="pill">Cross-region</span><span class="pill">Self-correcting Flow</span>
+    </div>
+  </div>
+</section>
+
+<section id="artifacts" class="container">
+  <h2 class="section-title reveal">作品證據</h2>
+  <p class="section-sub reveal">實際交付物與文件範例（可連結至 GitHub 或補充頁面）。</p>
+  <div class="artifact-list">
+    <div class="artifact reveal">
+      <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+      <div><h4>Test Strategy 文件</h4><p>跨裝置測試策略與範圍定義，包含優先級與風險評估摘要。</p></div>
+    </div>
+    <div class="artifact reveal">
+      <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h4"/></svg></div>
+      <div><h4>自動化框架結構</h4><p>Command / Flow / Device Rule 分層架構說明與資料夾結構範例。</p></div>
+    </div>
+    <div class="artifact reveal">
+      <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l4-4 4 4 6-8"/></svg></div>
+      <div><h4>執行報告範例</h4><p>回歸測試結果摘要、通過率、缺陷分佈與趨勢圖示。</p></div>
+    </div>
+    <div class="artifact reveal">
+      <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div>
+      <div><h4>Bug Report 範本</h4><p>標準化缺陷回報格式，包含 repro steps、evidence、風險等級。</p></div>
+    </div>
+      <div class="artifact reveal">
+      <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg></div>
+      <div><h4>Agentic AI 分層架構文件</h4><p>五層架構設計簡報，含樹狀資料夾結構、執行精準度數據與跨裝置/跨國別擴充方式。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="container">
+  <div class="cta-box reveal">
+    <h2>想討論合作，或想看更完整的案例？</h2>
+    <p>無論是招募機會（包含證券 / 金融科技產業 QA 職缺），或是需要導入可擴充的 QA 自動化與 AI Driven Test 架構，都歡迎與我聯絡。</p>
+    <div class="btn-row" style="justify-content:center;">
+      <a class="btn btn-primary" href="mailto:your-email@example.com">寄信給我</a>
+      <a class="btn btn-ghost" href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <span style="font-size:.85rem;color:var(--color-text-muted);">© 2026 QA × AI Automation Portfolio</span>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#cases">Case Studies</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var t=document.querySelector('[data-theme-toggle]'), r=document.documentElement;
+  var d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark':'light';
+  r.setAttribute('data-theme', d);
+  function icon(mode){
+    return mode==='dark'
+      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  }
+  if(t){
+    t.addEventListener('click', function(){
+      d = d==='dark' ? 'light' : 'dark';
+      r.setAttribute('data-theme', d);
+    });
+    t.addEventListener('keypress', function(e){ if(e.key==='Enter') t.click(); });
+  }
+  var els = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {threshold:0.12});
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
